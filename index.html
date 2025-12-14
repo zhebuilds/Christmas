@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Welcome to our Christmas themed website, sharing holiday warmth and joy with you!">
-    <title>🎄 Merry Christmas - Holiday Celebration 🎅</title>
+    <title>Merry Christmas - Holiday Celebration 🎅</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><text y='56' font-size='56'>🎄</text></svg>">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -214,6 +215,11 @@
                     <span class="wish-author">— Star of Bethlehem</span>
                 </div>
             </div>
+            <!-- Admin Buttons -->
+            <div class="admin-buttons" style="margin-top: 30px; text-align: center;">
+                <button onclick="clearWishes()" class="btn btn-secondary" style="margin-right: 10px;">🗑️ Clear User Wishes</button>
+                <button onclick="demoChristmas()" class="btn btn-primary">🎉 Preview Christmas Celebration</button>
+            </div>
         </div>
     </section>
 
@@ -308,6 +314,33 @@
         <button id="music-toggle" class="music-btn" title="Play Christmas Music">
             🔔
         </button>
+    </div>
+
+    <!-- Website Pet - Cute Yellow Duck -->
+    <div id="pet-container" class="pet-container">
+        <!-- Egg State -->
+        <div id="pet-egg" class="pet-egg hidden">
+            <div class="egg-body">
+                <div class="egg-crack crack-1"></div>
+                <div class="egg-crack crack-2"></div>
+                <div class="egg-crack crack-3"></div>
+            </div>
+            <div class="egg-shadow"></div>
+        </div>
+        
+        <!-- Duck State - Cute Yellow Duck GIF -->
+        <div id="pet-duck" class="pet-duck">
+            <img src="./emoji/1.gif" alt="Cute Duck" class="duck-gif" id="duck-gif">
+            <div class="duck-shadow"></div>
+            <div class="pet-speech hidden" id="pet-speech">
+                <span>🎄 Quack!</span>
+            </div>
+        </div>
+        
+        <!-- Context Menu -->
+        <div id="pet-menu" class="pet-menu hidden">
+            <div class="menu-item" id="pet-minimize">🥚 Minimize to Egg</div>
+        </div>
     </div>
 
     <script src="script.js"></script>

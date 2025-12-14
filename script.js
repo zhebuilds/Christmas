@@ -21,12 +21,94 @@ document.addEventListener('DOMContentLoaded', function() {
 function checkChristmasDay() {
     const n = new Date();
     if (n.getMonth() === 11 && n.getDate() === 25 && !sessionStorage.getItem('cel')) {
-        document.getElementById('christmas-celebration')?.classList.remove('hidden');
+        showChristmasCelebration();
         sessionStorage.setItem('cel', '1');
     }
     document.getElementById('close-celebration')?.addEventListener('click', () => {
         document.getElementById('christmas-celebration')?.classList.add('hidden');
+        stopConfetti();
     });
+}
+
+// Show Christmas celebration overlay with effects
+function showChristmasCelebration() {
+    const overlay = document.getElementById('christmas-celebration');
+    if (overlay) {
+        overlay.classList.remove('hidden');
+        startConfetti();
+        playJingleSound();
+    }
+}
+
+// Demo function - call this to preview the celebration
+window.demoChristmas = function() {
+    showChristmasCelebration();
+    console.log('🎄 Demo mode: Showing Christmas celebration!');
+};
+
+// Clear all user wishes (call this to remove test data)
+window.clearWishes = function() {
+    localStorage.removeItem('christmasWishes');
+    console.log('🗑️ All user wishes cleared! Refresh the page to see changes.');
+    alert('All user wishes have been cleared! Refresh the page.');
+};
+
+// Confetti effect
+let confettiInterval = null;
+function startConfetti() {
+    const overlay = document.getElementById('christmas-celebration');
+    if (!overlay) return;
+    
+    const colors = ['#ff0000', '#00ff00', '#ffd700', '#ff69b4', '#00bfff', '#ff6347'];
+    const emojis = ['🎄', '🎅', '🎁', '⭐', '❄️', '🔔', '🦌', '✨'];
+    
+    confettiInterval = setInterval(() => {
+        for (let i = 0; i < 5; i++) {
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti-piece';
+            confetti.style.cssText = `
+                position: absolute;
+                left: ${Math.random() * 100}%;
+                top: -20px;
+                font-size: ${15 + Math.random() * 25}px;
+                animation: confettiFall ${3 + Math.random() * 4}s linear forwards;
+                z-index: 10001;
+            `;
+            confetti.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+            overlay.appendChild(confetti);
+            
+            setTimeout(() => confetti.remove(), 7000);
+        }
+    }, 300);
+    
+    // Auto stop after 10 seconds
+    setTimeout(stopConfetti, 10000);
+}
+
+function stopConfetti() {
+    if (confettiInterval) {
+        clearInterval(confettiInterval);
+        confettiInterval = null;
+    }
+}
+
+function playJingleSound() {
+    // Simple audio context for a jingle sound
+    try {
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+        const notes = [523.25, 587.33, 659.25, 698.46, 783.99]; // C D E F G
+        notes.forEach((freq, i) => {
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.frequency.value = freq;
+            osc.type = 'sine';
+            gain.gain.value = 0.1;
+            osc.start(ctx.currentTime + i * 0.15);
+            osc.stop(ctx.currentTime + i * 0.15 + 0.3);
+        });
+    } catch (e) {}
 }
 
 // ============================================
@@ -461,4 +543,251 @@ css.textContent = `
 `;
 document.head.appendChild(css);
 
+// ============================================
+// WEBSITE PET - CUTE YELLOW DUCK
+// ============================================
+document.addEventListener('DOMContentLoaded', function() {
+    initDuckPet();
+});
+
+function initDuckPet() {
+    const container = document.getElementById('pet-container');
+    const duck = document.getElementById('pet-duck');
+    const egg = document.getElementById('pet-egg');
+    const menu = document.getElementById('pet-menu');
+    const speech = document.getElementById('pet-speech');
+    const duckGif = document.getElementById('duck-gif');
+    
+    if (!container || !duck || !egg || !duckGif) {
+        console.error('Duck pet elements not found!');
+        return;
+    }
+    
+    let isEgg = false;
+    let menuVisible = false;
+    let currentGifIndex = 0;
+    let rotationInterval = null;
+    
+    // All available duck GIFs
+    const duckGifs = [
+        './emoji/1.gif',
+        './emoji/4.gif',
+        './emoji/8.gif',
+        './emoji/10.gif',
+        './emoji/16.gif',
+        './emoji/23.gif',
+        './emoji/25.gif',
+        './emoji/27.gif',
+        './emoji/28.gif',
+        './emoji/29.gif',
+        './emoji/34.gif',
+        './emoji/35.gif'
+    ];
+    
+    // Christmas themed speeches
+    const speeches = [
+        '🎄 Merry Christmas!',
+        '🎅 Ho Ho Ho~',
+        '❄️ Let it snow!',
+        '🦆 Quack quack!',
+        '🎁 Open your gifts!',
+        '⭐ Wish upon a star!',
+        '🔔 Jingle all the way!',
+        '🌟 You\'re amazing!',
+        '💛 Sending love~',
+        '💝 Happy holidays!',
+        '🥰 You\'re so warm!',
+        '😊 Have a great day!',
+        '🎉 Party time!',
+        '✨ Magic is real!',
+        '🍪 Got any cookies?',
+        '☃️ Build a snowman!'
+    ];
+    
+    // Switch to next GIF
+    function nextGif() {
+        currentGifIndex = (currentGifIndex + 1) % duckGifs.length;
+        duckGif.style.opacity = '0.5';
+        duckGif.src = duckGifs[currentGifIndex];
+        setTimeout(() => {
+            duckGif.style.opacity = '1';
+        }, 100);
+    }
+    
+    // Switch to random GIF
+    function randomGif() {
+        let newIndex;
+        do {
+            newIndex = Math.floor(Math.random() * duckGifs.length);
+        } while (newIndex === currentGifIndex && duckGifs.length > 1);
+        currentGifIndex = newIndex;
+        duckGif.src = duckGifs[currentGifIndex];
+    }
+    
+    // Start auto rotation
+    function startRotation() {
+        if (rotationInterval) clearInterval(rotationInterval);
+        rotationInterval = setInterval(() => {
+            if (!isEgg) nextGif();
+        }, 6000);
+    }
+    
+    // Show speech bubble
+    function showSpeech(msg) {
+        if (!msg) {
+            msg = speeches[Math.floor(Math.random() * speeches.length)];
+        }
+        speech.querySelector('span').textContent = msg;
+        speech.classList.remove('hidden');
+        
+        setTimeout(() => {
+            speech.classList.add('hidden');
+        }, 2500);
+    }
+    
+    // Start rotation on load
+    startRotation();
+    
+    // Left click on duck - switch GIF + show speech
+    duck.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (menuVisible) {
+            hideMenu();
+            return;
+        }
+        
+        // Quick switch to random GIF
+        randomGif();
+        
+        // Show random speech
+        showSpeech();
+        
+        // Add click animation
+        duckGif.style.transform = 'scale(1.2)';
+        setTimeout(() => {
+            duckGif.style.transform = '';
+        }, 150);
+    });
+    
+    // Right click on duck - show menu
+    duck.addEventListener('contextmenu', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        showMenu();
+    });
+    
+    // Left click on egg - hatch
+    egg.addEventListener('click', (e) => {
+        e.stopPropagation();
+        hatchEgg();
+    });
+    
+    // Menu item - Minimize to egg
+    document.getElementById('pet-minimize')?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        hideMenu();
+        minimizeToEgg();
+    });
+    
+    // Menu item - Hide
+    document.getElementById('pet-hide')?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        hideMenu();
+        hidePet();
+    });
+    
+    // Click outside to hide menu
+    document.addEventListener('click', () => {
+        if (menuVisible) hideMenu();
+    });
+    
+    function showMenu() {
+        menu.classList.remove('hidden');
+        menuVisible = true;
+    }
+    
+    function hideMenu() {
+        menu.classList.add('hidden');
+        menuVisible = false;
+    }
+    
+    function minimizeToEgg() {
+        // Show goodbye speech
+        showSpeech('💤 Going to sleep~');
+        
+        setTimeout(() => {
+            // Shrink animation
+            duck.classList.add('shrinking');
+            
+            setTimeout(() => {
+                duck.classList.add('hidden');
+                duck.classList.remove('shrinking');
+                speech.classList.add('hidden');
+                
+                // Show egg with animation
+                egg.classList.remove('hidden');
+                egg.style.animation = 'none';
+                egg.offsetHeight; // Trigger reflow
+                egg.style.animation = 'eggAppear 0.5s ease';
+                
+                isEgg = true;
+            }, 500);
+        }, 500);
+    }
+    
+    function hatchEgg() {
+        if (!isEgg) return;
+        
+        // Stage 1: Egg starts shaking
+        egg.classList.add('hatching');
+        
+        // Stage 2: Cracks appear and shake intensifies
+        setTimeout(() => {
+            egg.classList.remove('hatching');
+            egg.classList.add('hatching-complete');
+            
+            // Stage 3: Egg breaks, duck appears
+            setTimeout(() => {
+                egg.classList.add('hidden');
+                egg.classList.remove('hatching-complete');
+                
+                // Duck appears with animation
+                duck.classList.remove('hidden');
+                duck.classList.add('appearing');
+                
+                // Random new GIF on hatch
+                randomGif();
+                
+                setTimeout(() => {
+                    duck.classList.remove('appearing');
+                    showSpeech('🐣 I\'m back!');
+                }, 600);
+                
+                isEgg = false;
+                startRotation();
+            }, 600);
+        }, 1000);
+    }
+    
+    function hidePet() {
+        container.classList.add('hidden');
+        showNotification('👋 Duck hidden. Refresh to see it again.');
+    }
+    
+    // Random idle speech every 15-25 seconds
+    setInterval(() => {
+        if (isEgg || menuVisible) return;
+        
+        if (Math.random() < 0.3) {
+            showSpeech();
+        }
+    }, 15000);
+    
+    console.log('🦆 Duck pet initialized with', duckGifs.length, 'GIFs');
+}
+
 console.log('🎄 Merry Christmas! 🎅');
+console.log('🦆 Cute yellow duck pet loaded!');
+
+
+
