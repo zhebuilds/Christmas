@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Welcome to our Christmas themed website, sharing holiday warmth and joy with you!">
+    <title>🎄 Merry Christmas - Holiday Celebration 🎅</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Snow Effect Container -->
+    <div class="snowflakes" aria-hidden="true">
+        <div class="snowflake">❅</div>
+        <div class="snowflake">❆</div>
+        <div class="snowflake">❅</div>
+        <div class="snowflake">❆</div>
+        <div class="snowflake">❅</div>
+        <div class="snowflake">❆</div>
+        <div class="snowflake">❅</div>
+        <div class="snowflake">❆</div>
+        <div class="snowflake">❅</div>
+        <div class="snowflake">❆</div>
+        <div class="snowflake">❅</div>
+        <div class="snowflake">❆</div>
+    </div>
+
+    <!-- Christmas Day Celebration Overlay -->
+    <div id="christmas-celebration" class="celebration-overlay hidden">
+        <div class="celebration-content">
+            <h1 class="celebration-title">🎄 Merry Christmas! 🎄</h1>
+            <p class="celebration-subtitle">Wishing you joy, peace, and happiness!</p>
+            <div class="celebration-icons">
+                <span>🎅</span><span>🎁</span><span>⭐</span><span>🦌</span><span>❄️</span>
+            </div>
+            <button id="close-celebration" class="btn btn-primary">Explore the Site 🎉</button>
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-brand">🎄 Christmas Land</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#tree-decorator">3D Farm</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#wishes">Wishes</a></li>
+            <li><a href="#countdown">Countdown</a></li>
+        </ul>
+        <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle menu">☰</button>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+        <ul class="mobile-nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#tree-decorator">3D Farm</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#wishes">Wishes</a></li>
+            <li><a href="#countdown">Countdown</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero Banner -->
+    <header id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Merry Christmas</h1>
+            <h2 class="hero-subtitle">🎅 Season's Greetings 🎁</h2>
+            <p class="hero-text">May this wonderful holiday bring you warmth, joy, and happiness</p>
+            <div class="hero-buttons">
+                <a href="#tree-decorator" class="btn btn-primary">View 3D Farm 🎄</a>
+                <a href="#countdown" class="btn btn-secondary">View Countdown ⏰</a>
+            </div>
+        </div>
+        <div class="hero-decorations">
+            <span class="decoration">🎄</span>
+            <span class="decoration">🎁</span>
+            <span class="decoration">⭐</span>
+            <span class="decoration">🔔</span>
+        </div>
+    </header>
+
+    <!-- About Christmas Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <h2 class="section-title">🌟 About Christmas</h2>
+            <div class="about-grid">
+                <div class="about-card" data-info="traditions">
+                    <div class="card-icon">🎄</div>
+                    <h3>Christmas Traditions</h3>
+                    <p>Christmas is celebrated on December 25th, originating from Christianity. Today it's a global holiday symbolizing family reunion and love.</p>
+                    <span class="card-hint">Click to learn more →</span>
+                </div>
+                <div class="about-card" data-info="santa">
+                    <div class="card-icon">🎅</div>
+                    <h3>Santa Claus</h3>
+                    <p>Santa lives at the North Pole and every Christmas Eve, he rides his reindeer sleigh to deliver gifts to children worldwide.</p>
+                    <span class="card-hint">Click to learn more →</span>
+                </div>
+                <div class="about-card" data-info="gifts">
+                    <div class="card-icon">🎁</div>
+                    <h3>Gifts & Love</h3>
+                    <p>Exchanging gifts represents care and blessings. The most precious gift isn't the price, but the heartfelt thought behind it.</p>
+                    <span class="card-hint">Click to learn more →</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Info Modal -->
+    <div id="info-modal" class="modal hidden">
+        <div class="modal-content modal-large">
+            <button class="modal-close" id="modal-close">&times;</button>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <!-- 3D Tree Section - Using Sketchfab Embed -->
+    <section id="tree-decorator" class="tree-decorator-section">
+        <div class="container">
+            <h2 class="section-title">🎄 3D Christmas Farm</h2>
+            <p class="section-desc">Explore a magical Christmas cartoon farm! Rotate 360° and zoom in to see all the festive details!</p>
+            
+            <div class="tree-3d-wrapper">
+                <div class="sketchfab-embed-wrapper">
+                    <iframe 
+                        title="Christmas Cartoon Farm" 
+                        frameborder="0" 
+                        allowfullscreen 
+                        mozallowfullscreen="true" 
+                        webkitallowfullscreen="true" 
+                        allow="autoplay; fullscreen; xr-spatial-tracking" 
+                        src="https://sketchfab.com/models/40f2c02a7e2a43cf8ab2a977df9090db/embed?autostart=1&autospin=0.2&ui_animations=0&ui_infos=0&ui_stop=0&ui_inspector=0&ui_watermark_link=0&ui_watermark=0&ui_ar=0&ui_help=0&ui_settings=0&ui_vr=0&ui_fullscreen=0&ui_annotations=0&ui_hint=0&transparent=1&ui_theme=dark&preload=1">
+                    </iframe>
+                </div>
+                <div class="tree-controls-simple">
+                    <h3>🔧 Controls</h3>
+                    <ul>
+                        <li>🖱️ <strong>Left-click + Drag:</strong> Rotate 360°</li>
+                        <li>🔍 <strong>Scroll:</strong> Zoom in/out</li>
+                        <li>👆 <strong>Right-click + Drag:</strong> Pan view</li>
+                        <li>📱 <strong>Touch:</strong> Pinch to zoom, swipe to rotate</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery-section">
+        <div class="container">
+            <h2 class="section-title">🖼️ Christmas Gallery</h2>
+            <p class="section-desc">Click on any image to view details</p>
+            <div class="gallery-grid">
+                <div class="gallery-item" data-title="Tree Decorating" data-desc="Decorating the Christmas tree is a beloved family tradition that brings joy and togetherness.">
+                    <div class="gallery-placeholder">🎄</div>
+                    <div class="gallery-overlay"><span>Tree Decorating</span></div>
+                </div>
+                <div class="gallery-item" data-title="Gift Giving" data-desc="The joy of giving brings families closer together during the holidays.">
+                    <div class="gallery-placeholder">🎁</div>
+                    <div class="gallery-overlay"><span>Gift Giving</span></div>
+                </div>
+                <div class="gallery-item" data-title="Holiday Treats" data-desc="Christmas treats like cookies and candy canes are a delicious tradition.">
+                    <div class="gallery-placeholder">🍪</div>
+                    <div class="gallery-overlay"><span>Holiday Treats</span></div>
+                </div>
+                <div class="gallery-item" data-title="Family Time" data-desc="Christmas brings families together to share love and create memories.">
+                    <div class="gallery-placeholder">👨‍👩‍👧‍👦</div>
+                    <div class="gallery-overlay"><span>Family Time</span></div>
+                </div>
+                <div class="gallery-item" data-title="Winter Wonder" data-desc="Snow-covered landscapes create magical winter scenes.">
+                    <div class="gallery-placeholder">⛄</div>
+                    <div class="gallery-overlay"><span>Winter Wonder</span></div>
+                </div>
+                <div class="gallery-item" data-title="Holiday Lights" data-desc="Twinkling lights create a magical festive atmosphere.">
+                    <div class="gallery-placeholder">✨</div>
+                    <div class="gallery-overlay"><span>Holiday Lights</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Lightbox -->
+    <div id="lightbox" class="lightbox hidden">
+        <div class="lightbox-content">
+            <button class="lightbox-close" id="lightbox-close">&times;</button>
+            <div class="lightbox-icon" id="lightbox-icon">🎄</div>
+            <h3 id="lightbox-title">Title</h3>
+            <p id="lightbox-desc">Description</p>
+        </div>
+    </div>
+
+    <!-- Wishes Wall Section -->
+    <section id="wishes" class="wishes-section">
+        <div class="container">
+            <h2 class="section-title">💝 Community Wishes</h2>
+            <p class="section-desc">See what others are wishing for this Christmas!</p>
+            <div id="wishes-grid" class="wishes-grid">
+                <div class="wish-card">
+                    <div class="wish-avatar">🎅</div>
+                    <p class="wish-text">"May the Christmas bells ring in a melody of happiness!"</p>
+                    <span class="wish-author">— Santa Claus</span>
+                </div>
+                <div class="wish-card">
+                    <div class="wish-avatar">❄️</div>
+                    <p class="wish-text">"Wishing everyone peace and joy this holiday season!"</p>
+                    <span class="wish-author">— Snow Fairy</span>
+                </div>
+                <div class="wish-card">
+                    <div class="wish-avatar">⭐</div>
+                    <p class="wish-text">"May the Christmas star light your path!"</p>
+                    <span class="wish-author">— Star of Bethlehem</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Countdown Section -->
+    <section id="countdown" class="countdown-section">
+        <div class="container">
+            <h2 class="section-title">⏰ Christmas Countdown</h2>
+            <div class="countdown-container">
+                <div class="countdown-item">
+                    <span id="days" class="countdown-number">00</span>
+                    <span class="countdown-label">Days</span>
+                </div>
+                <div class="countdown-separator">:</div>
+                <div class="countdown-item">
+                    <span id="hours" class="countdown-number">00</span>
+                    <span class="countdown-label">Hours</span>
+                </div>
+                <div class="countdown-separator">:</div>
+                <div class="countdown-item">
+                    <span id="minutes" class="countdown-number">00</span>
+                    <span class="countdown-label">Mins</span>
+                </div>
+                <div class="countdown-separator">:</div>
+                <div class="countdown-item">
+                    <span id="seconds" class="countdown-number">00</span>
+                    <span class="countdown-label">Secs</span>
+                </div>
+            </div>
+            <p class="countdown-message" id="countdown-message">Time until Christmas...</p>
+        </div>
+    </section>
+
+    <!-- Make a Wish Section -->
+    <section id="make-wish" class="interactive-section">
+        <div class="container">
+            <h2 class="section-title">✨ Share Your Christmas Wish</h2>
+            <p class="section-desc">Write your wish and it will appear on our community wishes wall!</p>
+            <div class="wish-form-container">
+                <form id="wish-form" class="wish-form">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" placeholder="Enter your name" required maxlength="30">
+                    </div>
+                    <div class="form-group">
+                        <label for="wish">Your Christmas Wish</label>
+                        <textarea id="wish" rows="4" placeholder="What do you wish for this Christmas?" required maxlength="200"></textarea>
+                        <span class="char-count"><span id="char-current">0</span>/200</span>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">🌟 Share My Wish</button>
+                </form>
+                <div id="wish-result" class="wish-result hidden">
+                    <div class="wish-success">
+                        <span class="success-icon">🎉</span>
+                        <h3>Wish Shared!</h3>
+                        <p>Your wish has been added to the community wall!</p>
+                        <button id="new-wish-btn" class="btn btn-secondary">Share Another Wish</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>🎄 Christmas Land</h3>
+                    <p>Wishing you a warm and wonderful Christmas!</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#tree-decorator">3D Farm</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
+                        <li><a href="#wishes">Wishes</a></li>
+                        <li><a href="#countdown">Countdown</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>🎅 Merry Christmas & Happy New Year! 🎄</p>
+                <p>© 2025 Christmas Land</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Music Player -->
+    <div class="music-player">
+        <button id="music-toggle" class="music-btn" title="Play Christmas Music">
+            🔔
+        </button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
